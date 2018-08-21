@@ -1,0 +1,33 @@
+[user]
+	email = peter@aptoma.com
+	name = Peter Rudolfsen
+
+[color]
+	diff = auto
+
+[alias]
+	plog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+	diffc = diff --cached
+	export-remote = archive --format=tar --remote=$1 HEAD | (cd $2 && tar xf -)
+	ci = commit
+	st = status
+	stage = add -u
+	unstage = reset HEAD --
+	discard = checkout --
+	co = checkout
+	last = log -1 HEAD
+	changelog = "!_() { t=$(git describe --abbrev=0 --tags); git log ${t}..HEAD --no-merges --pretty=format:' * %s - [%h](../../commit/%h)'; }; _"
+	prev = checkout HEAD^1
+	next = "!sh -c 'git log --reverse --pretty=%H master | awk \"/$(git rev-parse HEAD)/{getline;print}\" | xargs git checkout'"
+
+[push]
+	# default = simple
+
+[branch]
+	autosetuprebase = always
+
+[push]
+	default = simple
+
+[core]
+	autocrlf = input

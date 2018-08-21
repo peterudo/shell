@@ -1,0 +1,102 @@
+# Easier navigation: .., ..., ...., ....., ~ and -
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~" # `cd` is probably faster to type though
+alias -- -="cd -"
+
+# Shortcuts
+alias s="sudo"
+alias g="git"
+alias h="history"
+alias gr="grunt"
+alias release="release-it"
+alias c="bundle exec cap"
+alias n="npm"
+alias y="yarn"
+alias d="docker"
+
+# Turn on colorization for tree always
+alias tree="tree -C"
+
+# JavaScriptCore CLI provided by WebKit
+alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc"
+
+# Airport CLI
+alias wifi="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
+
+# Put computer in suspend mode
+alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+# Mountain Lion’s Notification Center CLI (gem install terminal-notifier)
+alias notifier="/Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier"
+
+# Dump the last 100 system messages with fancy colors
+alias sys="grc tail -100 /var/log/system.log"
+
+# Read standard input and copy it to the clipboard
+alias clipboard="pbcopy"
+
+# List shared libraries for a file
+alias ldd="otool -L"
+
+# Prints details on process system calls using DTrace (follow forks)
+alias strace="sudo dtruss -f"
+
+# List open files used by Time Machine backup process
+alias tm-watch="watch -d -n 5 sudo lsof -c backupd"
+
+# Monitor filesystem activity for Time Machine backup process
+alias tm-trace="sudo fs_usage -w -f filesys backupd | grep ' open '"
+
+# List established TCP connections for all applications
+alias app-tcp-list="sudo lsof -n -P -iTCP -sTCP:ESTABLISHED"
+
+# Show fingerprints for all public SSH keys
+alias ssh-key-fingerprints='for i in ~/.ssh/*.pub; do ssh-keygen -l -f "$i"; done'
+
+# Tracks file opens using DTrace
+alias opensnoop="sudo opensnoop"
+
+# List flags for files
+alias lsflags="ls -lO"
+
+# Startup a web server and serve the files in the currect directory
+alias server="open http://localhost:8000 && python -m SimpleHTTPServer"
+
+# Returns canonicalized absolute pathname
+alias realpath="greadlink -f"
+
+# Flush Directory Service cache
+alias flush="sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
+
+# IP addresses
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en1"
+alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'"
+
+# Show/hide hidden files in Finder
+alias show="defaults write com.apple.Finder AppleShowAllFiles -bool true && killall Finder"
+alias hide="defaults write com.apple.Finder AppleShowAllFiles -bool false && killall Finder"
+
+# Hide/show all desktop icons (useful when presenting)
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+# Git
+alias git-authorship="git ls-files -z | xargs -0 -n1 -E'\n' -J {} git blame --date short -wCMcp '{}' | perl -pe 's/^.*?\((.*?) +\d{4}-\d{2}-\d{2} +\d+\).*/\1/' | sort | uniq -c | sort -rn"
+alias github="((git config --local --get remote.origin.url | sed -e 's/git@github.com:/https:\/\/github.com\//g' -e 's/\.git$/\/tree\//g'); (git branch 2>/dev/null| sed -n '/^\*/s/^\* //p'); echo '/'; (git rev-parse --show-prefix)) | tr -d '\n' | xargs open"
+
+# List everything you’ve ever downloaded
+alias downloaded="sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'select LSQuarantineDataURLString from LSQuarantineEvent' | sed '/^$/d'"
+
+# Chrome
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
+
+# Colorize some commands (see /opt/local/etc/grc.conf)
+# for CMD in ping traceroute; do
+#   alias $CMD="grc $CMD"
+# done
