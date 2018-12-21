@@ -97,8 +97,8 @@ alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Goo
 alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
 
 # PDFreactor
-alias ro-stop="launchctl stop com.realobjects.pdfReactorWebService"
-alias ro-start="launchctl start com.realobjects.pdfReactorWebService"
+alias ro-stop="sudo launchctl stop com.realobjects.pdfReactorWebService"
+alias ro-start="sudo launchctl start com.realobjects.pdfReactorWebService"
 
 # Colorize some commands (see /opt/local/etc/grc.conf)
 # for CMD in ping traceroute; do
